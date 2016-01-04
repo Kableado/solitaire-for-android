@@ -1,0 +1,5 @@
+.idea
+bin
+gen/com/kmagic/solitaire/BuildConfig.java
+gen/com/kmagic/solitaire/Manifest.java
+gen/com/kmagic/solitaire/R.java
