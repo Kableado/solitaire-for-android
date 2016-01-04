@@ -12,7 +12,10 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-*/ 
+
+  Modified by Curtis Gedak 2015
+  Modified by Valeriano A.R 2016
+*/
 package com.kmagic.solitaire;
 
 import android.app.Activity;
@@ -34,10 +37,6 @@ public class Solitaire extends Activity {
   private static final int MENU_OPTIONS   = 3;
   private static final int MENU_SAVE_QUIT = 4;
   private static final int MENU_QUIT      = 5;
-  private static final int MENU_SOLITAIRE = 6;
-  private static final int MENU_SPIDER    = 7;
-  private static final int MENU_FREECELL  = 8;
-  private static final int MENU_FORTYTHIEVES = 9;
   private static final int MENU_STATS     = 10;
   private static final int MENU_HELP      = 11;
 
@@ -70,6 +69,8 @@ public class Solitaire extends Activity {
   @Override
   public void onStart() {
     super.onStart();
+    mSolitaireView.onStart();
+
     if (mSettings.getBoolean("SolitaireSaveValid", false)) {
       SharedPreferences.Editor editor = GetSettings().edit();
       editor.putBoolean("SolitaireSaveValid", false);

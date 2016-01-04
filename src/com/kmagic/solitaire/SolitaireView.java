@@ -12,6 +12,9 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
+
+  Modified by Curtis Gedak 2015
+  Modified by Valeriano A.R. 2016
 */ 
 package com.kmagic.solitaire;
 
@@ -23,11 +26,13 @@ import android.graphics.PointF;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.MotionEvent;
 import android.view.Gravity;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.lang.Math;
@@ -61,6 +66,7 @@ public class SolitaireView extends View {
   private CharSequence mWinText;
 
   private CardAnchor[] mCardAnchor;
+  private DisplayMetrics mMetrics;
   private DrawMaster mDrawMaster;
   private Rules mRules;
   private TextView mTextView;
@@ -97,8 +103,19 @@ public class SolitaireView extends View {
     super(context, attrs);
     setFocusable(true);
     setFocusableInTouchMode(true);
+    setLongClickable(true);
 
-    mDrawMaster = new DrawMaster(context);
+    // Get display properties
+    mMetrics = new DisplayMetrics();
+    WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+    wm.getDefaultDisplay().getMetrics(mMetrics);
+    int dpi = mMetrics.densityDpi;
+    // Some devices report incorrect DPI so fall back to default
+    if (dpi < 60)
+      dpi = 160;
+
+    mDrawMaster = new DrawMaster(context, mMetrics.widthPixels,
+                                 mMetrics.heightPixels, dpi);
     mMoveCard = new MoveCard();
     mSelectCard = new SelectCard();
     mViewMode = MODE_NORMAL;
@@ -108,7 +125,7 @@ public class SolitaireView extends View {
     mRefreshThread = new Thread(mRefreshHandler);
     mMoveHistory = new Stack<Move>();
     mUndoStorage = new Card[CardAnchor.MAX_CARDS];
-    mAnimateCard = new AnimateCard(this);
+    mAnimateCard = new AnimateCard(this, mMetrics.widthPixels);
     mSpeed = new Speed();
     mReplay = new Replay(this, mAnimateCard);
 
@@ -151,6 +168,7 @@ public class SolitaireView extends View {
     if (oldGameType == mRules.GetGameTypeString()) {
       mRules.SetCarryOverScore(oldScore);
     }
+    Card.SetSize(mDrawMaster.GetWidth(), mDrawMaster.GetDpi());
     mDrawMaster.DrawCards(GetSettings().getBoolean("DisplayBigCards", false));
     mCardAnchor = mRules.GetAnchorArray();
     if (mDrawMaster.GetWidth() > 1) {
@@ -383,6 +401,7 @@ public class SolitaireView extends View {
 
       mGameStarted = !mMoveHistory.isEmpty();
       mRules = Rules.CreateRules(map, this, mMoveHistory, mAnimateCard);
+      Card.SetSize(mDrawMaster.GetWidth(), mDrawMaster.GetDpi());
       SetDisplayTime(GetSettings().getBoolean("DisplayTime", true));
       mCardAnchor = mRules.GetAnchorArray();
       if (mDrawMaster.GetWidth() > 1) {
@@ -415,6 +434,19 @@ public class SolitaireView extends View {
     mPaused = false;
   }
 
+  public void onStart() {
+    // Get display properties
+    DisplayMetrics metrics = new DisplayMetrics();
+    WindowManager wm = (WindowManager)mContext.getSystemService(Context.WINDOW_SERVICE);
+    wm.getDefaultDisplay().getMetrics(metrics);
+    int dpi = metrics.densityDpi;
+    // Some devices report incorrect DPI so fall back to default
+    if (dpi < 60)
+      dpi = 160;
+    // Restore card size
+    Card.SetSize(metrics.widthPixels, dpi);
+  }
+
   public void Refresh() {
     mRefreshHandler.SingleRefresh();
   }
@@ -426,7 +458,6 @@ public class SolitaireView extends View {
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     mDrawMaster.SetScreenSize(w, h);
     mRules.Resize(w, h);
-    mSelectCard.SetHeight(h);
   }
 
   public void DisplayHelp() {

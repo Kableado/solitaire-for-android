@@ -137,20 +137,19 @@ class NormalSolitaire extends Rules {
     }
 
     // Top anchors for placing cards
-    for (int i = 0; i < 4; i++) {
-      mCardAnchor[i+2] = CardAnchor.CreateAnchor(CardAnchor.SEQ_SINK, i+2, this);
+    for (int i = 2; i < 6; i++) {
+      mCardAnchor[i] = CardAnchor.CreateAnchor(CardAnchor.SEQ_SINK, i+2, this);
     }
 
     // Middle anchor stacks
-    for (int i = 0; i < 7; i++) {
-      mCardAnchor[i+6] = CardAnchor.CreateAnchor(CardAnchor.GENERIC_ANCHOR, i+6, this);
-      mCardAnchor[i+6].SetStartSeq(GenericAnchor.START_KING);
-      mCardAnchor[i+6].SetBuildSeq(GenericAnchor.SEQ_DSC);
-      mCardAnchor[i+6].SetMoveSeq(GenericAnchor.SEQ_ASC);
-      mCardAnchor[i+6].SetSuit(GenericAnchor.SUIT_RB);
-      mCardAnchor[i+6].SetWrap(false);
-      mCardAnchor[i+6].SetBehavior(GenericAnchor.PACK_MULTI);
-      mCardAnchor[i+6].SetDisplay(GenericAnchor.DISPLAY_MIX);
+    for (int i = 6; i < 13; i++) {
+      mCardAnchor[i] = CardAnchor.CreateAnchor(CardAnchor.GENERIC_ANCHOR, i+6, this);
+      mCardAnchor[i].SetStartSeq(GenericAnchor.START_KING);
+      mCardAnchor[i].SetBuildSeq(GenericAnchor.SEQ_DSC);
+      mCardAnchor[i].SetMoveSeq(GenericAnchor.SEQ_ASC);
+      mCardAnchor[i].SetSuit(GenericAnchor.SUIT_RB);
+      mCardAnchor[i].SetWrap(false);
+      mCardAnchor[i].SetBehavior(GenericAnchor.PACK_MULTI);
     }
 
     if (map != null) {

@@ -12,20 +12,14 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-*/ 
+
+  Modified by Curtis Gedak 2015
+*/
 package com.kmagic.solitaire;
 
 import android.graphics.Canvas;
-import android.util.Log;
-import java.lang.InterruptedException;
-import java.lang.Runnable;
-import java.lang.Thread;
-import java.lang.Math;
-import java.util.concurrent.Semaphore;
 
 public class AnimateCard {
-
-  private static final float PPF = 40;
 
   protected SolitaireView mView;
   private Card[] mCard;
@@ -34,14 +28,16 @@ public class AnimateCard {
   private int mFrames;
   private float mDx;
   private float mDy;
+  private float mPPF; // Animation speed in Pixels Per Frame
   private boolean mAnimate;
   private Runnable mCallback;
 
-  public AnimateCard(SolitaireView view) {
+  public AnimateCard(SolitaireView view, int widthPixels) {
     mView = view;
     mAnimate = false;
     mCard = new Card[104];
     mCallback = null;
+    mPPF = widthPixels/12;
   }
 
   public boolean GetAnimate() { return mAnimate; }
@@ -92,7 +88,7 @@ public class AnimateCard {
     float dx = x - card.GetX(); 
     float dy = y - card.GetY(); 
 
-    mFrames = Math.round((float)Math.sqrt(dx * dx + dy * dy) / PPF);
+    mFrames = Math.round((float)Math.sqrt(dx * dx + dy * dy) / mPPF);
     if (mFrames == 0) {
       mFrames = 1;
     }

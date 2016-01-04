@@ -12,7 +12,9 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-*/ 
+
+  Modified by Curtis Gedak 2015
+*/
 package com.kmagic.solitaire;
 
 class Card {
@@ -30,13 +32,42 @@ class Card {
     "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"
   };
 
-  public static int WIDTH = 44;
-  public static int HEIGHT = 64;
+  public static int WIDTH = 45;   // Card width
+  public static int HEIGHT = 64;  // Card height
+  public static int SMALL_SPACING = 7;  // Top shown portion of card on stack
+  public static int HIDDEN_SPACING = 3; // Tip shown of hidden card on stack
 
   private int mValue;
   private int mSuit;
   private float mX;
   private float mY;
+
+  public static void SetSize(int screenWidth, int dpi) {
+    int mdpi_card_width = 45;
+
+    // Calculate card WIDTH
+    if (screenWidth >= 480) {
+      // Simulate Android scaling of original solitaire-for-android card
+      //   width by using the average of high and low value of calculations
+      //   due to loss of precision when using integer math.
+      WIDTH = (int)((   (screenWidth/480*mdpi_card_width) /* low precision */
+                + (screenWidth*mdpi_card_width/480) /* high precision */
+              ) / 1.2);
+    } else {
+      //   Multiply and divide by 4 to deal with 0.75x ldpi graphics
+      WIDTH = (int)((   (4*screenWidth/480*mdpi_card_width/4) /* low precision */
+                + (4*screenWidth*mdpi_card_width/480/4) /* high precision */
+              ) / 1.2);
+    }
+
+    // Calculate card HEIGHT
+    //   Use integer math:  1.425 = 57/40, even number = /2*2
+    //                      1.425 card height/width ratio -> even #
+    HEIGHT = WIDTH * 57/40/2*2;
+
+    SMALL_SPACING = 10 * dpi/160;
+    HIDDEN_SPACING = 4 * dpi/160;
+  }
 
   public Card(int value, int suit) {
     mValue = value;
