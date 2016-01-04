@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Solitario</string>
+    <string name="accept">Aceptar</string>
+    <string name="always">Siempre</string>
+    <string name="auto_move">Automatico</string>
+    <string name="big_cards">Cartas grandes</string>
+    <string name="cancel">Cancelar</string>
+    <string name="clear">Limpiar estadisticas</string>
+    <string name="deal_1">Sacar 1 carta</string>
+    <string name="deal_3">Sacar 3 cartas</string>
+    <string name="decline">Pasar</string>
+    <string name="display_options">Opciones</string>
+    <string name="display_time">Tiempo</string>
+    <string name="fling_only">Solo arrastrar</string>
+    <string name="help_text">Mover:\n Carta unica: Arrastrar carta.\n Todo el monton: Arrastrar monton desde encima de
+        la ultima carta.\n Parte del monton: Toca el monton, desliza para ajustar, despues arrastra la carta de
+        encima.\n\n Automatico:\n Tira de la carta para iniciar cadena de movimientos de cartas a sus casas.\n\n
+        Sacando:\n Toca la baraja.\n\n Deshacer:\n Pulsa el boton atras.\n\n Menu:\n Cambiar modos de juego, guardar,
+        opciones y ver esta ayuda.
+    </string>
+    <string name="menu_fortythieves">Cuarenta ladrones</string>
+    <string name="menu_freecell">Freecell</string>
+    <string name="menu_help">Ayuda</string>
+    <string name="menu_newgame">Nueva Partida</string>
+    <string name="menu_options">Opciones</string>
+    <string name="menu_quit">Salir</string>
+    <string name="menu_restart">Reiniciar</string>
+    <string name="menu_save_quit">Guardar y Salir</string>
+    <string name="menu_solitaire">Solitario</string>
+    <string name="menu_spider">Spider</string>
+    <string name="menu_stats">Estadisticas</string>
+    <string name="never">Nunca</string>
+    <string name="normal">Estilo normal</string>
+    <string name="normal_cards">Cartas normales</string>
+    <string name="solitaire_layout_text_text"></string>
+    <string name="solitaire_options">Opciones de Solitario</string>
+    <string name="spider_options">Opciones de Spider</string>
+    <string name="suits_1">One Suit</string>
+    <string name="win_text">¡Ganaste!\n\nPulsa menu para jugar de nuevo.</string>
+    <string name="suits_2">Two Suits</string>
+    <string name="suits_4">Four Suits</string>
+    <string name="vegas">Estilo Vegas</string>
+</resources>
