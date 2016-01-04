@@ -30,26 +30,13 @@ class Card {
     "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"
   };
 
-  public static int WIDTH = 45;
+  public static int WIDTH = 44;
   public static int HEIGHT = 64;
 
   private int mValue;
   private int mSuit;
   private float mX;
   private float mY;
-
-  public static void SetSize(int type) {
-    if (type == Rules.SOLITAIRE) {
-      WIDTH = 51;
-      HEIGHT = 72;
-    } else if (type == Rules.FREECELL) {
-      WIDTH = 49;
-      HEIGHT = 68;
-    } else {
-      WIDTH = 45;
-      HEIGHT = 64;
-    }
-  }
 
   public Card(int value, int suit) {
     mValue = value;
