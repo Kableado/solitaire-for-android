@@ -45,8 +45,6 @@ public class Solitaire extends Activity {
   private View mMainView;
   private SolitaireView mSolitaireView;
   private SharedPreferences mSettings;
-
-  private boolean mDoSave;
   
   // Shared preferences are where the various user settings are stored.
   public SharedPreferences GetSettings() { return mSettings; }
@@ -54,7 +52,6 @@ public class Solitaire extends Activity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    mDoSave = true;
 
     requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -108,10 +105,9 @@ public class Solitaire extends Activity {
 
     menu.add(0, MENU_RESTART, 0, R.string.menu_restart);
     menu.add(0, MENU_OPTIONS, 0, R.string.menu_options);
-    menu.add(0, MENU_SAVE_QUIT, 0, R.string.menu_save_quit);
-    menu.add(0, MENU_QUIT, 0, R.string.menu_quit);
     menu.add(0, MENU_STATS, 0, R.string.menu_stats);
     menu.add(0, MENU_HELP, 0, R.string.menu_help);
+    menu.add(0, MENU_QUIT, 0, R.string.menu_quit);
     return true;
   }
 
@@ -142,13 +138,7 @@ public class Solitaire extends Activity {
       case MENU_HELP:
         mSolitaireView.DisplayHelp();
         break;
-      case MENU_SAVE_QUIT:
-        mSolitaireView.SaveGame();
-        mDoSave = false;
-        finish();
-        break;
       case MENU_QUIT:
-        mDoSave = false;
         finish();
         break;
     }
@@ -163,11 +153,9 @@ public class Solitaire extends Activity {
   }
 
   @Override
-  protected void onStop() {
+  protected void onStop(){
     super.onStop();
-    if (mDoSave) {
-      mSolitaireView.SaveGame();
-    }
+    mSolitaireView.SaveGame();
   }
 
   @Override
