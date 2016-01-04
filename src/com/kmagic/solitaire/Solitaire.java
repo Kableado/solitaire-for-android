@@ -56,8 +56,6 @@ public class Solitaire extends Activity {
     super.onCreate(savedInstanceState);
     mDoSave = true;
 
-    // Force landscape and no title for extra room
-    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     requestWindowFeature(Window.FEATURE_NO_TITLE);
 
     // If the user has never accepted the EULA show it again.
