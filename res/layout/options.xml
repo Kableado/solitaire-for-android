@@ -32,7 +32,7 @@
       android:focusable="true"
       android:textSize="20sp"
       android:gravity="center"
-    />
+      style="@android:style/Theme.Black"/>
 
     <RadioGroup
       android:layout_width="fill_parent"
@@ -41,14 +41,14 @@
       android:orientation="horizontal">
 
       <RadioButton android:id="@+id/normal_cards"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/normal_cards" />
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/normal_cards" style="@android:style/Theme.Black"/>
 
       <RadioButton android:id="@+id/big_cards"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/big_cards" />
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/big_cards" style="@android:style/Theme.Black"/>
 
     </RadioGroup>
 
@@ -58,10 +58,10 @@
       android:gravity="center"
       android:layout_height="wrap_content">
       <CheckBox android:id="@+id/display_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/display_time" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/display_time" style="@android:style/Theme.Black"/>
     </LinearLayout>
 
     <TextView
@@ -71,7 +71,7 @@
       android:focusable="true"
       android:textSize="20sp"
       android:gravity="center"
-    />
+      style="@android:style/Theme.Black"/>
 
     <RadioGroup
       android:layout_width="fill_parent"
@@ -80,14 +80,14 @@
       android:orientation="horizontal">
 
       <RadioButton android:id="@+id/deal_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/deal_3" />
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/deal_3" style="@android:style/Theme.Black"/>
 
       <RadioButton android:id="@+id/deal_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/deal_1" />
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/deal_1" style="@android:style/Theme.Black"/>
 
     </RadioGroup>
     <RadioGroup
@@ -97,47 +97,17 @@
       android:orientation="horizontal">
 
       <RadioButton android:id="@+id/style_normal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/normal" />
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/normal" style="@android:style/Theme.Black"/>
 
       <RadioButton android:id="@+id/style_vegas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/vegas" />
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/vegas" style="@android:style/Theme.Black"/>
 
     </RadioGroup>
-    <TextView
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/spider_options"
-      android:focusable="true"
-      android:textSize="20sp"
-      android:gravity="center"
-    />
 
-    <RadioGroup
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:gravity="center"
-      android:orientation="horizontal">
-
-      <RadioButton android:id="@+id/suits_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/suits_4" />
-
-      <RadioButton android:id="@+id/suits_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/suits_2" />
-
-      <RadioButton android:id="@+id/suits_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/suits_1" />
-
-    </RadioGroup>
     <TextView
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
@@ -154,19 +124,19 @@
       android:orientation="horizontal">
 
       <RadioButton android:id="@+id/auto_move_always"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/always" />
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/always" style="@android:style/Theme.Black"/>
 
       <RadioButton android:id="@+id/auto_move_fling_only"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fling_only" />
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/fling_only" style="@android:style/Theme.Black"/>
 
       <RadioButton android:id="@+id/auto_move_never"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/never" />
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/never" style="@android:style/Theme.Black"/>
 
     </RadioGroup>
     <LinearLayout
@@ -175,13 +145,13 @@
       android:gravity="center"
       android:layout_height="wrap_content">
       <Button android:id="@+id/button_accept"
-        android:text="@string/accept"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+              android:text="@string/accept"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" style="@android:style/Theme.Black"/>
       <Button android:id="@+id/button_cancel"
-        android:text="@string/cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+              android:text="@string/cancel"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" style="@android:style/Theme.Black"/>
 
     </LinearLayout>
   </LinearLayout>

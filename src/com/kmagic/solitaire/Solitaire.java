@@ -81,7 +81,7 @@ public class Solitaire extends Activity {
       }
     }
 
-    mSolitaireView.InitGame(mSettings.getInt("LastType", Rules.SOLITAIRE));
+    mSolitaireView.InitGame();
     HelpSplashScreen();
   }
 
@@ -96,13 +96,7 @@ public class Solitaire extends Activity {
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     super.onCreateOptionsMenu(menu);
-
-    SubMenu subMenu = menu.addSubMenu(0, MENU_NEW_GAME, 0, R.string.menu_newgame);
-    subMenu.add(0, MENU_SOLITAIRE, 0, R.string.menu_solitaire);
-    subMenu.add(0, MENU_SPIDER, 0, R.string.menu_spider);
-    subMenu.add(0, MENU_FREECELL, 0, R.string.menu_freecell);
-    subMenu.add(0, MENU_FORTYTHIEVES, 0, R.string.menu_fortythieves);
-
+    menu.add(0, MENU_NEW_GAME, 0, R.string.menu_newgame);
     menu.add(0, MENU_RESTART, 0, R.string.menu_restart);
     menu.add(0, MENU_OPTIONS, 0, R.string.menu_options);
     menu.add(0, MENU_STATS, 0, R.string.menu_stats);
@@ -114,17 +108,8 @@ public class Solitaire extends Activity {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-      case MENU_SOLITAIRE:
-        mSolitaireView.InitGame(Rules.SOLITAIRE);
-        break;
-      case MENU_SPIDER:
-        mSolitaireView.InitGame(Rules.SPIDER);
-        break;
-      case MENU_FREECELL:
-        mSolitaireView.InitGame(Rules.FREECELL);
-        break;
-      case MENU_FORTYTHIEVES:
-        mSolitaireView.InitGame(Rules.FORTYTHIEVES);
+      case MENU_NEW_GAME:
+        mSolitaireView.InitGame();
         break;
       case MENU_RESTART:
         mSolitaireView.RestartGame();
@@ -187,7 +172,7 @@ public class Solitaire extends Activity {
 
   public void NewOptions() {
     setContentView(mMainView);
-    mSolitaireView.InitGame(mSettings.getInt("LastType", Rules.SOLITAIRE));
+    mSolitaireView.InitGame();
   }
 
   // This is called for option changes that require a refresh, but not a new game

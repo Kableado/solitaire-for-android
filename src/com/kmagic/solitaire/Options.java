@@ -30,8 +30,6 @@ import android.view.WindowManager;
 public class Options {
 
   public Options(final Solitaire solitaire, final DrawMaster drawMaster) {
-    final int type = solitaire.GetSettings().getInt("LastType", Rules.SOLITAIRE);
-
     solitaire.setContentView(R.layout.options);
     View view = (View) solitaire.findViewById(R.id.options_view);
     view.setFocusable(true);
@@ -52,12 +50,6 @@ public class Options {
     ((RadioButton)solitaire.findViewById(R.id.deal_1)).setChecked(!dealThree);
     ((RadioButton)solitaire.findViewById(R.id.style_normal)).setChecked(styleNormal);
     ((RadioButton)solitaire.findViewById(R.id.style_vegas)).setChecked(!styleNormal);
-
-    // Spider stuff
-    final int suits = solitaire.GetSettings().getInt("SpiderSuits", 4);
-    ((RadioButton)solitaire.findViewById(R.id.suits_4)).setChecked(suits == 4);
-    ((RadioButton)solitaire.findViewById(R.id.suits_2)).setChecked(suits == 2);
-    ((RadioButton)solitaire.findViewById(R.id.suits_1)).setChecked(suits == 1);
 
     // Automove 
     final int autoMove = solitaire.GetSettings().getInt("AutoMoveLevel", Rules.AUTO_MOVE_ALWAYS);
@@ -86,32 +78,13 @@ public class Options {
         if (dealThree != ((RadioButton)solitaire.findViewById(R.id.deal_3)).isChecked()) {
           editor.putBoolean("SolitaireDealThree", !dealThree);
           commit = true;
-          if (type == Rules.SOLITAIRE) {
-            newGame = true;
-          }
+          newGame = true;
         }
         
         if (styleNormal != ((RadioButton)solitaire.findViewById(R.id.style_normal)).isChecked()) {
           editor.putBoolean("SolitaireStyleNormal", !styleNormal);
           commit = true;
-          if (type == Rules.SOLITAIRE) {
-            newGame = true;
-          }
-        }
-
-        int newSuits = 1;
-        if (((RadioButton)solitaire.findViewById(R.id.suits_4)).isChecked()) {
-          newSuits = 4;
-        } else if (((RadioButton)solitaire.findViewById(R.id.suits_2)).isChecked()) {
-          newSuits = 2;
-        }
-
-        if (newSuits != suits) {
-          editor.putInt("SpiderSuits", newSuits);
-          commit = true;
-          if (type == Rules.SPIDER) {
-            newGame = true;
-          }
+          newGame = true;
         }
 
         int newAutoMove = Rules.AUTO_MOVE_NEVER;

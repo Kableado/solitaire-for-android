@@ -121,7 +121,7 @@ public class SolitaireView extends View {
     mWinningScore = 0;
   }
 
-  public void InitGame(int gameType) {
+  public void InitGame() {
     int oldScore = 0;
     String oldGameType = "None";
 
@@ -147,7 +147,7 @@ public class SolitaireView extends View {
     ChangeViewMode(MODE_NORMAL);
     mTextView.setVisibility(View.INVISIBLE);
     mMoveHistory.clear();
-    mRules = Rules.CreateRules(gameType, null, this, mMoveHistory, mAnimateCard);
+    mRules = Rules.CreateRules(null, this, mMoveHistory, mAnimateCard);
     if (oldGameType == mRules.GetGameTypeString()) {
       mRules.SetCarryOverScore(oldScore);
     }
@@ -158,7 +158,6 @@ public class SolitaireView extends View {
       Refresh();
     }
     SetDisplayTime(GetSettings().getBoolean("DisplayTime", true));
-    editor.putInt("LastType", gameType);
     editor.commit();
     mStartTime = SystemClock.uptimeMillis();
     mElapsed = 0;
@@ -319,7 +318,6 @@ public class SolitaireView extends View {
         oout.writeObject(SAVE_VERSION);
         oout.writeInt(mCardAnchor.length);
         oout.writeInt(cardCount);
-        oout.writeInt(mRules.GetType());
         oout.writeObject(anchorCardCount);
         oout.writeObject(anchorHiddenCount);
         oout.writeObject(value);
@@ -363,7 +361,6 @@ public class SolitaireView extends View {
         
       map.putInt("cardAnchorCount", oin.readInt());
       map.putInt("cardCount", oin.readInt());
-      int type = oin.readInt();
       map.putIntArray("anchorCardCount", (int[])oin.readObject());
       map.putIntArray("anchorHiddenCount", (int[])oin.readObject());
       map.putIntArray("value", (int[])oin.readObject());
@@ -385,7 +382,7 @@ public class SolitaireView extends View {
       oin.close();
 
       mGameStarted = !mMoveHistory.isEmpty();
-      mRules = Rules.CreateRules(type, map, this, mMoveHistory, mAnimateCard);
+      mRules = Rules.CreateRules(map, this, mMoveHistory, mAnimateCard);
       SetDisplayTime(GetSettings().getBoolean("DisplayTime", true));
       mCardAnchor = mRules.GetAnchorArray();
       if (mDrawMaster.GetWidth() > 1) {

@@ -21,9 +21,9 @@
   android:layout_height="fill_parent">
 
   <LinearLayout
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+          android:orientation="vertical"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content" style="@android:style/Theme.Black">
 
     <TextView android:id="@+id/text_title"
       android:layout_width="fill_parent"
@@ -32,7 +32,7 @@
       android:focusable="true"
       android:textSize="20sp"
       android:gravity="center"
-    />
+              style="@android:style/Theme.Black"/>
     <TextView android:id="@+id/text_wins"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
       android:focusable="true"
       android:textSize="20sp"
       android:gravity="center"
-    />
+              style="@android:style/Theme.Black"/>
     <TextView android:id="@+id/text_percentage"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
       android:focusable="true"
       android:textSize="20sp"
       android:gravity="center"
-    />
+              style="@android:style/Theme.Black"/>
     <TextView android:id="@+id/text_best_time"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
       android:focusable="true"
       android:textSize="20sp"
       android:gravity="center"
-    />
+              style="@android:style/Theme.Black"/>
     <TextView android:id="@+id/text_high_score"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
       android:focusable="true"
       android:textSize="20sp"
       android:gravity="center"
-    />
+              style="@android:style/Theme.Black"/>
     <TextView android:id="@+id/empty"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
@@ -72,21 +72,21 @@
       android:focusable="true"
       android:textSize="20sp"
       android:gravity="center"
-    />
+              style="@android:style/Theme.Black"/>
 
     <LinearLayout
-      android:orientation="horizontal"
-      android:layout_width="fill_parent"
-      android:gravity="center"
-      android:layout_height="wrap_content">
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content" style="@android:style/Theme.Black">
       <Button android:id="@+id/button_accept"
-        android:text="@string/accept"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+              android:text="@string/accept"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" style="@android:style/Theme.Black"/>
       <Button android:id="@+id/button_clear"
-        android:text="@string/clear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+              android:text="@string/clear"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" style="@android:style/Theme.Black"/>
 
     </LinearLayout>
   </LinearLayout>
