@@ -64,4 +64,12 @@ Menu:\n
 Change the gametype, save, options, and view this help.
 </string>
     <string name="win_text">You Win!\n\nUse the menu to start a new game.</string>
+    <string name="attempts">Attempts</string>
+    <string name="wins">Wins</string>
+    <string name="time">Time</string>
+    <string name="score">Score</string>
+    <string name="statistics">Statistics</string>
+    <string name="winning_percentage">Winning Percentage</string>
+    <string name="fastest_time">Fastest Time</string>
+    <string name="high_score">High Score</string>
 </resources>

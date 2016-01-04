@@ -41,4 +41,12 @@
     <string name="suits_2">Two Suits</string>
     <string name="suits_4">Four Suits</string>
     <string name="vegas">Estilo Vegas</string>
+    <string name="attempts">Intentos</string>
+    <string name="score">Puntos</string>
+    <string name="time">Tiempo</string>
+    <string name="wins">Victorias</string>
+    <string name="statistics">Estadisticas</string>
+    <string name="winning_percentage">Porcentaje de victorias</string>
+    <string name="high_score">Puntuacion mas alta</string>
+    <string name="fastest_time">Tiempo mas rapido</string>
 </resources>
