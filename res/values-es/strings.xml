@@ -13,12 +13,7 @@
     <string name="display_options">Opciones</string>
     <string name="display_time">Tiempo</string>
     <string name="fling_only">Solo arrastrar</string>
-    <string name="help_text">Mover:\n Carta unica: Arrastrar carta.\n Todo el monton: Arrastrar monton desde encima de
-        la ultima carta.\n Parte del monton: Toca el monton, desliza para ajustar, despues arrastra la carta de
-        encima.\n\n Automatico:\n Tira de la carta para iniciar cadena de movimientos de cartas a sus casas.\n\n
-        Sacando:\n Toca la baraja.\n\n Deshacer:\n Pulsa el boton atras.\n\n Menu:\n Cambiar modos de juego, guardar,
-        opciones y ver esta ayuda.
-    </string>
+    <string name="help_text"><b>Mover</b>:\n<li><b>Carta unica</b>: Arrastrar carta.</li>\n<li><b>Todo el monton</b>: Arrastrar monton desde encima de la ultima carta.</li>\n<li><b>Parte del monton</b>: Toca el monton, desliza para ajustar, despues arrastra la carta de encima.</li>\n\n<b>Automatico</b>:\n Tira de la carta para iniciar cadena de movimientos de cartas a sus casas.\n\n<b>Sacando</b>:\n Toca la baraja.\n\n<b>Deshacer</b>:\n Pulsa el boton atras.</string>
     <string name="menu_fortythieves">Cuarenta ladrones</string>
     <string name="menu_freecell">Freecell</string>
     <string name="menu_help">Ayuda</string>
@@ -37,7 +32,7 @@
     <string name="solitaire_options">Opciones de Solitario</string>
     <string name="spider_options">Opciones de Spider</string>
     <string name="suits_1">One Suit</string>
-    <string name="win_text">¡Ganaste!\n\nPulsa menu para jugar de nuevo.</string>
+    <string name="win_text"><b>¡Ganaste!</b>\n\nPulsa menu para jugar de nuevo.</string>
     <string name="suits_2">Two Suits</string>
     <string name="suits_4">Four Suits</string>
     <string name="vegas">Estilo Vegas</string>

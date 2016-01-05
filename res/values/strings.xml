@@ -49,21 +49,8 @@
     <string name="fling_only">Fling Only</string>
     <string name="never">Never</string>
     <string name="display_time">Display Time</string>
-    <string name="help_text">
-Moving:\n
-Single Card: Drag the card.\n
-Whole Stack: Drag the stack starting above the bottom card.\n
-Partial Stack: Tap the stack, scroll to adjust, then drag the top card.\n\n
-Auto Move:\n
-Fling a card to start a chain of moving cards to their home.\n\n
-Dealing:\n
-Tap the deck or click the trackball or search key.\n\n
-Undo:\n
-Push the back button.\n\n
-Menu:\n
-Change the gametype, save, options, and view this help.
-</string>
-    <string name="win_text">You Win!\n\nUse the menu to start a new game.</string>
+    <string name="help_text"><b>Moving</b>:\n<li><b>Single Card</b>: Drag the card.</li>\n<li><b>Whole Stack</b>: Drag the stack starting above the bottom card.</li>\n<li><b>Partial Stack</b>: Tap the stack, scroll to adjust, then drag the top card.</li>\n\n<b>Auto Move</b>:\n Fling a card to start a chain of moving cards to their home.\n\n<b>Dealing</b>:\n Tap the deck or click the trackball or search key.\n\n<b>Undo</b>:\n Push the back button.</string>
+    <string name="win_text"><b>You Win!</b>\n\nUse the menu to start a new game.</string>
     <string name="attempts">Attempts</string>
     <string name="wins">Wins</string>
     <string name="time">Time</string>
