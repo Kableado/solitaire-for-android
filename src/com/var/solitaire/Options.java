@@ -25,7 +25,7 @@ import android.widget.RadioButton;
 
 public class Options {
 
-  public Options(final Solitaire solitaire, final DrawMaster drawMaster) {
+  public Options(final SolitaireActivity solitaire, final DrawMaster drawMaster) {
     solitaire.setContentView(com.var.solitaire.R.layout.options);
     View view = (View) solitaire.findViewById(com.var.solitaire.R.id.options_view);
     view.setFocusable(true);

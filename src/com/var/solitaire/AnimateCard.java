@@ -22,15 +22,15 @@ import android.graphics.Canvas;
 public class AnimateCard {
 
   protected SolitaireView mView;
-  private Card[] mCard;
-  private CardAnchor mCardAnchor;
-  private int mCount;
-  private int mFrames;
-  private float mDx;
-  private float mDy;
-  private float mPPF; // Animation speed in Pixels Per Frame
-  private boolean mAnimate;
-  private Runnable mCallback;
+  private   Card[]        mCard;
+  private   CardStack     mCardAnchor;
+  private   int           mCount;
+  private   int           mFrames;
+  private   float         mDx;
+  private   float         mDy;
+  private   float         mPPF; // Animation speed in Pixels Per Frame
+  private   boolean       mAnimate;
+  private   Runnable      mCallback;
 
   public AnimateCard(SolitaireView view, int widthPixels) {
     mView = view;
@@ -58,7 +58,7 @@ public class AnimateCard {
     }
   }
 
-  public void MoveCards(Card[] card, CardAnchor anchor, int count, Runnable callback) {
+  public void MoveCards(Card[] card, CardStack anchor, int count, Runnable callback) {
     float x = anchor.GetX();
     float y = anchor.GetNewY();
     mCardAnchor = anchor;
@@ -72,7 +72,7 @@ public class AnimateCard {
     Move(mCard[0], x, y);
   }
 
-  public void MoveCard(Card card, CardAnchor anchor) {
+  public void MoveCard(Card card, CardStack anchor) {
     float x = anchor.GetX();
     float y = anchor.GetNewY();
     mCardAnchor = anchor;

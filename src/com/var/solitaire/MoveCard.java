@@ -23,11 +23,11 @@ class MoveCard {
 
   private static final int MAX_CARDS = 13;
 
-  private boolean mValid;
-  private Card[] mCard;
-  private int mCardCount;
-  private CardAnchor mCardAnchor;
-  private PointF mOriginalPoint;
+  private boolean   mValid;
+  private Card[]    mCard;
+  private int       mCardCount;
+  private CardStack mCardAnchor;
+  private PointF    mOriginalPoint;
 
   public MoveCard() {
     mCard = new Card[MAX_CARDS];
@@ -36,10 +36,11 @@ class MoveCard {
   }
 
   public boolean IsValid() { return mValid; }
-  public CardAnchor GetAnchor() { return mCardAnchor; }
+  public
+  CardStack GetAnchor() { return mCardAnchor; }
   public int GetCount() { return mCardCount; }
   public Card GetTopCard() { return mCard[0]; }
-  public void SetAnchor(CardAnchor anchor) { 
+  public void SetAnchor(CardStack anchor) {
     mCardAnchor = anchor;
   }
 
@@ -114,7 +115,7 @@ class MoveCard {
     mValid = true;
   }
 
-  public void InitFromAnchor(CardAnchor cardAnchor, float x, float y) {
+  public void InitFromAnchor(CardStack cardAnchor, float x, float y) {
     mCardAnchor = cardAnchor;
     Card[] cards = cardAnchor.GetCardStack();
 

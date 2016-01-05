@@ -19,18 +19,18 @@ import android.util.Log;
 import java.util.Stack;
 
 public class Replay implements Runnable {
-  private Stack<Move> mMoveStack;
+  private Stack<Move>   mMoveStack;
   private SolitaireView mView;
-  private AnimateCard mAnimateCard;
-  private CardAnchor[] mCardAnchor;
-  private boolean mIsPlaying;
+  private AnimateCard   mAnimateCard;
+  private CardStack[]   mCardAnchor;
+  private boolean       mIsPlaying;
 
-  private Card[] mSinkCard;
-  private int mSinkCount;
-  private int mEventCount;
-  private CardAnchor mSinkAnchor;
-  private CardAnchor mSinkFrom;
-  private boolean mSinkUnhide;
+  private Card[]    mSinkCard;
+  private int       mSinkCount;
+  private int       mEventCount;
+  private CardStack mSinkAnchor;
+  private CardStack mSinkFrom;
+  private boolean   mSinkUnhide;
 
   public Replay(SolitaireView view, AnimateCard animateCard) {
     mView = view;
@@ -43,7 +43,7 @@ public class Replay implements Runnable {
   public boolean IsPlaying() { return mIsPlaying; }
   public void StopPlaying() { mIsPlaying = false; }
 
-  public void StartReplay(Stack<Move> history, CardAnchor[] anchor) {
+  public void StartReplay(Stack<Move> history, CardStack[] anchor) {
     mCardAnchor = anchor;
     mMoveStack.clear();
     while (!history.empty()) {

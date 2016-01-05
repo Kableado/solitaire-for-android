@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 public class Stats {
 
-  public Stats(final Solitaire solitaire, final SolitaireView view) {
+  public Stats(final SolitaireActivity solitaire, final SolitaireView view) {
 
     solitaire.setContentView(com.var.solitaire.R.layout.stats);
     View statsView = solitaire.findViewById(com.var.solitaire.R.id.stats_view);

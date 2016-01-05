@@ -65,12 +65,12 @@ public class SolitaireView extends View {
   private CharSequence mHelpText;
   private CharSequence mWinText;
 
-  private CardAnchor[] mCardAnchor;
+  private CardStack[]    mCardAnchor;
   private DisplayMetrics mMetrics;
-  private DrawMaster mDrawMaster;
-  private Rules mRules;
-  private TextView mTextView;
-  private AnimateCard mAnimateCard;
+  private DrawMaster     mDrawMaster;
+  private Rules          mRules;
+  private TextView       mTextView;
+  private AnimateCard    mAnimateCard;
 
   private MoveCard mMoveCard;
   private SelectCard mSelectCard;
@@ -124,7 +124,7 @@ public class SolitaireView extends View {
     mRefreshHandler = new RefreshHandler(this);
     mRefreshThread = new Thread(mRefreshHandler);
     mMoveHistory = new Stack<Move>();
-    mUndoStorage = new Card[CardAnchor.MAX_CARDS];
+    mUndoStorage = new Card[CardStack.MAX_CARDS];
     mAnimateCard = new AnimateCard(this, mMetrics.widthPixels);
     mSpeed = new Speed();
     mReplay = new Replay(this, mAnimateCard);
@@ -184,7 +184,7 @@ public class SolitaireView extends View {
     mGameStarted = false;
   }
 
-  public SharedPreferences GetSettings() { return ((Solitaire)mContext).GetSettings(); }
+  public SharedPreferences GetSettings() { return ((SolitaireActivity)mContext).GetSettings(); }
   public DrawMaster GetDrawMaster() { return mDrawMaster; }
   public Rules GetRules() { return mRules; }
   public void ClearGameStarted() { mGameStarted = false; }
@@ -631,7 +631,7 @@ public class SolitaireView extends View {
         break;
       case MODE_MOVE_CARD:
         for (int close = 0; close < 2; close++) {
-          CardAnchor prevAnchor = mMoveCard.GetAnchor();
+          CardStack prevAnchor = mMoveCard.GetAnchor();
           boolean unhide = (prevAnchor.GetVisibleCount() == 0 &&
                             prevAnchor.GetCount() > 0);
           int count = mMoveCard.GetCount();
@@ -650,7 +650,7 @@ public class SolitaireView extends View {
           }
         }
         if (!mMoveCard.HasMoved()) {
-          CardAnchor anchor = mMoveCard.GetAnchor();
+          CardStack anchor = mMoveCard.GetAnchor();
           mMoveCard.Release();
           if (anchor.ExpandStack(x, y)) {
             mSelectCard.InitFromAnchor(anchor);

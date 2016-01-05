@@ -21,14 +21,14 @@ class SelectCard {
 
   private static final int MAX_CARDS = 13;
 
-  private boolean mValid;
-  private int mSelected;
-  private Card[] mCard;
-  private int mCardCount;
-  private CardAnchor mCardAnchor;
-  private float mLeftEdge;
-  private float mRightEdge;
-  private int mHeight;
+  private boolean   mValid;
+  private int       mSelected;
+  private Card[]    mCard;
+  private int       mCardCount;
+  private CardStack mCardAnchor;
+  private float     mLeftEdge;
+  private float     mRightEdge;
+  private int       mHeight;
 
   public SelectCard() {
     mHeight = 1;
@@ -51,7 +51,8 @@ class SelectCard {
   public void SetHeight(int height) { mHeight = height; }
   public boolean IsValid() { return mValid; }
 
-  public CardAnchor GetAnchor() { return mCardAnchor; }
+  public
+  CardStack GetAnchor() { return mCardAnchor; }
   public int GetCount() {
     if (mSelected == -1)
       return mCardCount;
@@ -65,7 +66,7 @@ class SelectCard {
     }
   }
 
-  public void InitFromAnchor(CardAnchor cardAnchor) {
+  public void InitFromAnchor(CardStack cardAnchor) {
     mValid = true;
     mSelected = -1;
     mCardAnchor = cardAnchor;
