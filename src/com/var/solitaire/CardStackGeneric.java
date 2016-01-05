@@ -3,7 +3,7 @@ package com.var.solitaire;
 import android.graphics.Canvas;
 
 // New Abstract
-class GenericAnchor extends CardStack{
+class CardStackGeneric extends CardStack{
 
   //Sequence start values
   public static final int START_ANY  = 1; // An empty stack can take any card.
@@ -32,66 +32,64 @@ class GenericAnchor extends CardStack{
   protected int mMaxHeight;
 
   public
-  GenericAnchor(){
+  CardStackGeneric(){
     super();
-    SetStartSeq(GenericAnchor.SEQ_ANY);
-    SetBuildSeq(GenericAnchor.SEQ_ANY);
+    SetStartSeq(CardStackGeneric.SEQ_ANY);
+    SetBuildSeq(CardStackGeneric.SEQ_ANY);
     SetBuildWrap(false);
-    SetBuildSuit(GenericAnchor.SUIT_ANY);
-    SetDropoff(GenericAnchor.PACK_NONE);
-    SetPickup(GenericAnchor.PACK_NONE);
+    SetBuildSuit(CardStackGeneric.SUIT_ANY);
+    SetDropoff(CardStackGeneric.PACK_NONE);
+    SetPickup(CardStackGeneric.PACK_NONE);
     mMaxHeight = Card.HEIGHT;
   }
 
   @Override public
   void SetMaxHeight(int maxHeight){
     mMaxHeight = maxHeight;
-    CheckSizing();
     SetPosition(mX, mY);
   }
 
   @Override protected
   void SetCardPosition(int idx){
     if(idx < mHiddenCount){
+      // Position a hidden card
       mCard[idx].SetPosition(mX, mY + Card.HIDDEN_SPACING * idx);
-    }else{
-      int startY = mHiddenCount * Card.HIDDEN_SPACING;
-      int y = (int)mY + startY + (idx - mHiddenCount) * Card.SMALL_SPACING;
-      mCard[idx].SetPosition(mX, y);
+      return;
+    }
+
+    // Position any other card
+    boolean readjust = false;
+    int startY = mHiddenCount * Card.HIDDEN_SPACING;
+    int spaceLeft = mMaxHeight - (startY + Card.HEIGHT);
+    int count = (mCardCount - mHiddenCount);
+    int spacing = Card.SMALL_SPACING;
+    if(count > 1){
+      spacing = spaceLeft / (count - 1);
+      if(spacing > Card.SMALL_SPACING){
+        spacing = Card.SMALL_SPACING;
+      }
+    }
+    for(int idx2 = mHiddenCount; idx2 <= idx; idx2++){
+      int y = (int)mY + startY + (idx2 - mHiddenCount) * spacing;
+      mCard[idx2].SetPosition(mX, y);
     }
   }
 
   @Override public
   void SetHiddenCount(int count){
     super.SetHiddenCount(count);
-    CheckSizing();
     SetPosition(mX, mY);
   }
 
   @Override public
-  void AddCard(Card card){
-    super.AddCard(card);
-    CheckSizing();
-  }
-
-  @Override public
-  Card PopCard(){
-    Card ret = super.PopCard();
-    CheckSizing();
-    return ret;
-  }
-
-  @Override public
   boolean CanDropCard(MoveCard moveCard, int close){
-    if(mDROPOFF == GenericAnchor.PACK_NONE){
+    if(mDROPOFF == CardStackGeneric.PACK_NONE){
       return false;
     }
 
     Card card = moveCard.GetTopCard();
     float x = card.GetX() + Card.WIDTH / 2;
     float y = card.GetY() + Card.HEIGHT / 2;
-    //Card topCard = mCardCount > 0 ? mCard[mCardCount - 1] : null;
-    //float my = mCardCount > 0 ? topCard.GetY() : mY;
     if(IsOverCard(x, y, close)){
       return CanBuildCard(card);
     }
@@ -101,16 +99,16 @@ class GenericAnchor extends CardStack{
   public
   boolean CanBuildCard(Card card){
     // SEQ_ANY will allow all
-    if(mBUILDSEQ == GenericAnchor.SEQ_ANY){
+    if(mBUILDSEQ == CardStackGeneric.SEQ_ANY){
       return true;
     }
     Card topCard = mCardCount > 0 ? mCard[mCardCount - 1] : null;
     // Rules for empty stacks
     if(topCard == null){
       switch(mSTARTSEQ){
-        case GenericAnchor.START_KING:
+        case CardStackGeneric.START_KING:
           return card.GetValue() == Card.KING;
-        case GenericAnchor.START_ANY:
+        case CardStackGeneric.START_ANY:
         default:
           return true;
       }
@@ -123,17 +121,17 @@ class GenericAnchor extends CardStack{
     switch(mBUILDSEQ){
       //WRAP_NOWRAP=1; //Building stacks do not wrap
       //WRAP_WRAP=2;   //Building stacks wraps around
-      case GenericAnchor.SEQ_ASC:
+      case CardStackGeneric.SEQ_ASC:
         if(value - tvalue != 1){
           return false;
         }
         break;
-      case GenericAnchor.SEQ_DSC:
+      case CardStackGeneric.SEQ_DSC:
         if(tvalue - value != 1){
           return false;
         }
         break;
-      case GenericAnchor.SEQ_SEQ:
+      case CardStackGeneric.SEQ_SEQ:
         if(Math.abs(tvalue - value) != 1){
           return false;
         }
@@ -141,22 +139,22 @@ class GenericAnchor extends CardStack{
     }
     // Fail if suit is wrong
     switch(mBUILDSUIT){
-      case GenericAnchor.SUIT_RB:
+      case CardStackGeneric.SUIT_RB:
         if(Math.abs(tsuit - suit) % 2 == 0){
           return false;
         }
         break;
-      case GenericAnchor.SUIT_OTHER:
+      case CardStackGeneric.SUIT_OTHER:
         if(tsuit == suit){
           return false;
         }
         break;
-      case GenericAnchor.SUIT_COLOR:
+      case CardStackGeneric.SUIT_COLOR:
         if(Math.abs(tsuit - suit) != 2){
           return false;
         }
         break;
-      case GenericAnchor.SUIT_SAME:
+      case CardStackGeneric.SUIT_SAME:
         if(tsuit != suit){
           return false;
         }
@@ -205,7 +203,7 @@ class GenericAnchor extends CardStack{
   @Override
   public int GetMovableCount() {
     int visibleCount = GetVisibleCount();
-    if (visibleCount == 0 || mPICKUP == GenericAnchor.PACK_NONE){
+    if (visibleCount == 0 || mPICKUP == CardStackGeneric.PACK_NONE){
       return 0;
     }
     int seq_allowed = 1;
@@ -217,16 +215,16 @@ class GenericAnchor extends CardStack{
         g = true;
         h = true;
         switch (mMOVESEQ){
-          case GenericAnchor.SEQ_ANY:
+          case CardStackGeneric.SEQ_ANY:
             h = true;
             break;
-          case GenericAnchor.SEQ_ASC:
+          case CardStackGeneric.SEQ_ASC:
             h = this.is_seq_asc(i-1, i, mMOVEWRAP);
             break;
-          case GenericAnchor.SEQ_DSC:
+          case CardStackGeneric.SEQ_DSC:
             h = this.is_seq_asc(i, i-1, mMOVEWRAP);
             break;
-          case GenericAnchor.SEQ_SEQ:
+          case CardStackGeneric.SEQ_SEQ:
             h = (this.is_seq_asc(i, i-1, mMOVEWRAP) ||
                 this.is_seq_asc(i-1, i, mMOVEWRAP));
             break;
@@ -235,19 +233,19 @@ class GenericAnchor extends CardStack{
           g = false;
         }
         switch (mMOVESUIT){
-          case GenericAnchor.SUIT_ANY:
+          case CardStackGeneric.SUIT_ANY:
             h = true;
             break;
-          case GenericAnchor.SUIT_COLOR:
+          case CardStackGeneric.SUIT_COLOR:
             h = !this.is_suit_rb(i-1,i);
             break;
-          case GenericAnchor.SUIT_OTHER:
+          case CardStackGeneric.SUIT_OTHER:
             h = this.is_suit_other(i-1, i);
             break;
-          case GenericAnchor.SUIT_RB:
+          case CardStackGeneric.SUIT_RB:
             h = this.is_suit_rb(i-1, i);
             break;
-          case GenericAnchor.SUIT_SAME:
+          case CardStackGeneric.SUIT_SAME:
             h = this.is_suit_same(i-1, i);
             break;
         }
@@ -260,17 +258,17 @@ class GenericAnchor extends CardStack{
     }
 
     switch (mPICKUP){
-      case GenericAnchor.PACK_NONE:
+      case CardStackGeneric.PACK_NONE:
         return 0;
-      case GenericAnchor.PACK_ONE:
+      case CardStackGeneric.PACK_ONE:
         seq_allowed = Math.min(1, seq_allowed);
         break;
-      case GenericAnchor.PACK_MULTI:
+      case CardStackGeneric.PACK_MULTI:
         break;
-      case GenericAnchor.PACK_FIXED:
+      case CardStackGeneric.PACK_FIXED:
         //seq_allowed = Math.min( xmin, seq_allowed);
         break;
-      case GenericAnchor.PACK_LIMIT_BY_FREE:
+      case CardStackGeneric.PACK_LIMIT_BY_FREE:
         seq_allowed = Math.min(mRules.CountFreeSpaces()+1, seq_allowed);
         break;
     }
@@ -313,29 +311,6 @@ class GenericAnchor extends CardStack{
   }
   public boolean is_suit_other(int p1, int p2){
     return (mCard[p1].GetSuit() != mCard[p2].GetSuit());
-  }
-
-  private void CheckSizing() {
-    if (mCardCount < 2 || mCardCount - mHiddenCount < 2) {
-      return;
-    }
-    int max = mMaxHeight;
-    int hidden = mHiddenCount;
-    int showing = mCardCount - hidden;
-    int spaceLeft = max - (hidden * Card.HIDDEN_SPACING) - Card.HEIGHT;
-        int spacing = spaceLeft / (showing - 1);
-
-        if (spacing < Card.SMALL_SPACING && hidden > 1) {
-          spaceLeft = max - Card.HIDDEN_SPACING - Card.HEIGHT;
-          spacing = spaceLeft / (showing - 1);
-        } else {
-          if (spacing > Card.SMALL_SPACING) {
-            spacing = Card.SMALL_SPACING;
-      }
-    }
-    if (spacing != Card.SMALL_SPACING) {
-      SetPosition(mX, mY);
-    }
   }
 
   public float GetNewY() {

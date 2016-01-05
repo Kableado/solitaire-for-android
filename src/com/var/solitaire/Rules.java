@@ -27,7 +27,6 @@ public abstract class Rules {
   public static final int EVENT_STACK_ADD = 2;
   public static final int EVENT_FLING = 3;
   public static final int EVENT_SMART_MOVE = 4;
-  public static final int EVENT_DEAL_NEXT = 5;
 
   public static final int AUTO_MOVE_ALWAYS = 2;
   public static final int AUTO_MOVE_FLING_ONLY = 1;

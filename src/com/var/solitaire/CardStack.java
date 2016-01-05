@@ -68,7 +68,7 @@ class CardStack{
         ret = new CardStackDealTo();
         break;
       case GENERIC_ANCHOR:
-        ret = new GenericAnchor();
+        ret = new CardStackGeneric();
         break;
     }
     ret.SetRules(rules);
