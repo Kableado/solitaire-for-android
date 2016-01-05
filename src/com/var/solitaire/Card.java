@@ -42,31 +42,17 @@ class Card {
   private float mX;
   private float mY;
 
-  public static void SetSize(int screenWidth, int dpi) {
-    int mdpi_card_width = 45;
-
-    // Calculate card WIDTH
-    if (screenWidth >= 480) {
-      // Simulate Android scaling of original solitaire-for-android card
-      //   width by using the average of high and low value of calculations
-      //   due to loss of precision when using integer math.
-      WIDTH = (int)((   (screenWidth/480*mdpi_card_width) /* low precision */
-                + (screenWidth*mdpi_card_width/480) /* high precision */
-              ) / 1.2);
-    } else {
-      //   Multiply and divide by 4 to deal with 0.75x ldpi graphics
-      WIDTH = (int)((   (4*screenWidth/480*mdpi_card_width/4) /* low precision */
-                + (4*screenWidth*mdpi_card_width/480/4) /* high precision */
-              ) / 1.2);
+  public static void SetSize(int screenWidth, int screenHeight) {
+    double factor = 1.3;
+    if(screenWidth>(screenHeight * factor)){
+      WIDTH = (int)(screenHeight * factor) / 8;
+    }else{
+      WIDTH = screenWidth / 8;
     }
+    HEIGHT = (int)(WIDTH * 1.425);
 
-    // Calculate card HEIGHT
-    //   Use integer math:  1.425 = 57/40, even number = /2*2
-    //                      1.425 card height/width ratio -> even #
-    HEIGHT = WIDTH * 57/40/2*2;
-
-    SMALL_SPACING = 10 * dpi/160;
-    HIDDEN_SPACING = 4 * dpi/160;
+    SMALL_SPACING = HEIGHT / 5;
+    HIDDEN_SPACING = HEIGHT / 15;
   }
 
   public Card(int value, int suit) {
