@@ -32,11 +32,11 @@ public abstract class Rules {
   public static final int AUTO_MOVE_FLING_ONLY = 1;
   public static final int AUTO_MOVE_NEVER = 0;
 
-  protected SolitaireView mView;
-  protected Stack<Move> mMoveHistory;
-  protected AnimateCard mAnimateCard; 
-  protected boolean mIgnoreEvents;
-  protected EventPoster mEventPoster;
+  protected SolitaireView    mView;
+  protected Stack<Move>      mMoveHistory;
+  protected AnimateCard      mAnimateCard;
+  protected boolean          mIgnoreEvents;
+  protected RuleEventHandler mEventPoster;
 
 
   // Anchors
@@ -56,7 +56,7 @@ public abstract class Rules {
   public void SetMoveHistory(Stack<Move> moveHistory) { mMoveHistory = moveHistory; }
   public void SetAnimateCard(AnimateCard animateCard) { mAnimateCard = animateCard; }
   public void SetIgnoreEvents(boolean ignore) { mIgnoreEvents = ignore; }
-  public void SetEventPoster(EventPoster ep) { mEventPoster = ep; }
+  public void SetEventPoster(RuleEventHandler ep) {mEventPoster = ep; }
   public boolean GetIgnoreEvents() { return mIgnoreEvents; }
   public int GetRulesExtra() { return 0; }
   public String GetGameTypeString() { return ""; }
@@ -98,66 +98,10 @@ public abstract class Rules {
     ret.SetView(view);
     ret.SetMoveHistory(moveHistory);
     ret.SetAnimateCard(animate);
-    ret.SetEventPoster(new EventPoster(ret));
+    ret.SetEventPoster(new RuleEventHandler(ret));
     ret.RefreshOptions();
     ret.Init(map);
     return ret;
-  }
-}
-
-
-class EventPoster {
-  private int       mEvent;
-  private CardStack mCardAnchor;
-  private Card      mCard;
-  private Rules     mRules;
-
-  public EventPoster(Rules rules) {
-    mRules = rules;
-    mEvent = -1;
-    mCardAnchor = null;
-    mCard = null;
-  }
-
-  public void PostEvent(int event) {
-    PostEvent(event, null, null);
-  }
-
-  public void PostEvent(int event, CardStack anchor) {
-    PostEvent(event, anchor, null);
-  }
-
-  public void PostEvent(int event, CardStack anchor, Card card) {
-    mEvent = event;
-    mCardAnchor = anchor;
-    mCard = card;
-  }
-
-
-  public void ClearEvent() {
-    mEvent = Rules.EVENT_INVALID;
-    mCardAnchor = null;
-    mCard = null;
-  }
-
-  public boolean HasEvent() {
-    return mEvent != Rules.EVENT_INVALID;
-  }
-
-  public void HandleEvent() {
-    if (HasEvent()) {
-      int event = mEvent;
-      CardStack cardAnchor = mCardAnchor;
-      Card card = mCard;
-      ClearEvent();
-      if (cardAnchor != null && card != null) {
-        mRules.EventProcess(event, cardAnchor, card);
-      } else if (cardAnchor != null) {
-        mRules.EventProcess(event, cardAnchor);
-      } else {
-        mRules.EventProcess(event);
-      }
-    }
   }
 }
 

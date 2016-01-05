@@ -33,10 +33,10 @@ public class Stats {
 
     Rules rules = view.GetRules();
     final SharedPreferences settings = solitaire.GetSettings();
-    final String gameAttemptString = rules.GetGameTypeString() + solitaire.getString(com.var.solitaire.R.string.attempts);
-    final String gameWinString = rules.GetGameTypeString() + solitaire.getString(com.var.solitaire.R.string.wins);
-    final String gameTimeString = rules.GetGameTypeString() + solitaire.getString(com.var.solitaire.R.string.time);
-    final String gameScoreString = rules.GetGameTypeString() + solitaire.getString(com.var.solitaire.R.string.score);
+    final String gameAttemptString = rules.GetGameTypeString() + "Attempts";
+    final String gameWinString = rules.GetGameTypeString() + "Wins";
+    final String gameTimeString = rules.GetGameTypeString() + "Time";
+    final String gameScoreString = rules.GetGameTypeString() + "Score";
     int attempts = settings.getInt(gameAttemptString, 0);
     int wins = settings.getInt(gameWinString, 0);
     int bestTime = settings.getInt(gameTimeString, -1);

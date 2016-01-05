@@ -77,15 +77,15 @@ public class SolitaireView extends View {
   private int mViewMode;
   private boolean mTextViewDown;
 
-  private PointF mLastPoint;
-  private PointF mDownPoint;
-  private RefreshHandler mRefreshHandler;
-  private Thread mRefreshThread;
-  private Stack<Move> mMoveHistory;
-  private Replay mReplay;
-  private Context mContext;
-  private boolean mHasMoved;
-  private Speed mSpeed;
+  private PointF             mLastPoint;
+  private PointF             mDownPoint;
+  private ViewRefreshHandler mRefreshHandler;
+  private Thread             mRefreshThread;
+  private Stack<Move>        mMoveHistory;
+  private Replay             mReplay;
+  private Context            mContext;
+  private boolean            mHasMoved;
+  private FlingSpeedMeter    mSpeed;
 
   private Card[] mUndoStorage;
 
@@ -121,12 +121,12 @@ public class SolitaireView extends View {
     mViewMode = MODE_NORMAL;
     mLastPoint = new PointF();
     mDownPoint = new PointF();
-    mRefreshHandler = new RefreshHandler(this);
+    mRefreshHandler = new ViewRefreshHandler(this);
     mRefreshThread = new Thread(mRefreshHandler);
     mMoveHistory = new Stack<Move>();
     mUndoStorage = new Card[CardStack.MAX_CARDS];
     mAnimateCard = new AnimateCard(this, mMetrics.widthPixels);
-    mSpeed = new Speed();
+    mSpeed = new FlingSpeedMeter();
     mReplay = new Replay(this, mAnimateCard);
 
     Resources res = context.getResources();
@@ -231,7 +231,7 @@ public class SolitaireView extends View {
         mTextView.setVisibility(View.INVISIBLE);
         break;
       case MODE_ANIMATE:
-        mRefreshHandler.SetRefresh(RefreshHandler.SINGLE_REFRESH);
+        mRefreshHandler.SetRefresh(ViewRefreshHandler.SINGLE_REFRESH);
         break;
       case MODE_WIN:
       case MODE_WIN_STOP:
@@ -249,13 +249,13 @@ public class SolitaireView extends View {
       case MODE_MOVE_CARD:
       case MODE_CARD_SELECT:
       case MODE_ANIMATE:
-        mRefreshHandler.SetRefresh(RefreshHandler.LOCK_REFRESH);
+        mRefreshHandler.SetRefresh(ViewRefreshHandler.LOCK_REFRESH);
         break;
 
       case MODE_NORMAL:
       case MODE_TEXT:
       case MODE_WIN_STOP:
-        mRefreshHandler.SetRefresh(RefreshHandler.SINGLE_REFRESH);
+        mRefreshHandler.SetRefresh(ViewRefreshHandler.SINGLE_REFRESH);
         break;
     }
   }
@@ -897,88 +897,6 @@ public class SolitaireView extends View {
   public void RefreshOptions() {
     mRules.RefreshOptions();
     SetDisplayTime(GetSettings().getBoolean("DisplayTime", true));
-  }
-}
-
-class RefreshHandler implements Runnable {
-  public static final int NO_REFRESH = 1;
-  public static final int SINGLE_REFRESH = 2;
-  public static final int LOCK_REFRESH = 3;
-
-  private static final int FPS = 30;
-
-  private boolean mRun;
-  private int mRefresh;
-  private SolitaireView mView;
-
-  public RefreshHandler(SolitaireView solitaireView) {
-    mView = solitaireView;
-    mRun = true;
-    mRefresh = NO_REFRESH;
-  }
-
-  public void SetRefresh(int refresh) {
-    synchronized (this) {
-      mRefresh = refresh;
-    }
-  }
-
-  public void SingleRefresh() {
-    synchronized (this) {
-      if (mRefresh == NO_REFRESH) {
-        mRefresh = SINGLE_REFRESH;
-      }
-    }
-  }
-
-  public void SetRunning(boolean run) {
-    mRun = run;
-  }
-
-  public void run() {
-    while (mRun) {
-      try {
-        Thread.sleep(1000 / FPS);
-      } catch (InterruptedException e) {
-      }
-      mView.UpdateTime();
-      if (mRefresh != NO_REFRESH) {
-        mView.postInvalidate();
-        if (mRefresh == SINGLE_REFRESH) {
-          SetRefresh(NO_REFRESH);
-        }
-      }
-    }
-  }
-}
-
-class Speed {
-  private static final int SPEED_COUNT = 4;
-  private static final float SPEED_THRESHOLD = 10*10;
-  private float[] mSpeed;
-  private int mIdx;
-
-  public Speed() {
-    mSpeed = new float[SPEED_COUNT];
-    Reset();
-  }
-  public void Reset() {
-    mIdx = 0;
-    for (int i = 0; i < SPEED_COUNT; i++) {
-      mSpeed[i] = 0;
-    }
-  }
-  public void AddSpeed(float dx, float dy) {
-    mSpeed[mIdx] = dx*dx + dy*dy;
-    mIdx = (mIdx + 1) % SPEED_COUNT;
-  }
-  public boolean IsFast() {
-    for (int i = 0; i < SPEED_COUNT; i++) {
-      if (mSpeed[i] > SPEED_THRESHOLD) {
-        return true;
-      }
-    }
-    return false;
   }
 }
 
