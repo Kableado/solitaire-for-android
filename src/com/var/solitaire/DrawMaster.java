@@ -84,8 +84,10 @@ public class DrawMaster {
     // Card related stuff
     mEmptyAnchorPaint = new Paint();
     mEmptyAnchorPaint.setARGB(255, 0, 64, 0);
+    mEmptyAnchorPaint.setAntiAlias(true);
     mDoneEmptyAnchorPaint = new Paint();
     mDoneEmptyAnchorPaint.setARGB(128, 255, 0, 0);
+    mEmptyAnchorPaint.setAntiAlias(true);
     roundEdge = 4 * mDpi/160;
     cardOutline = 1 + (mDpi-40)/160;
     offset = mDpi/160;
@@ -279,7 +281,9 @@ public class DrawMaster {
   private void DrawCards(Resources r) {
 
     Paint cardFrontPaint = new Paint();
+    cardFrontPaint.setAntiAlias(true);
     Paint cardBorderPaint = new Paint();
+    cardBorderPaint.setAntiAlias(true);
     Bitmap[] suit = new Bitmap[4];
     Bitmap[] revSuit = new Bitmap[4];
     Bitmap[] smallSuit = new Bitmap[4];
