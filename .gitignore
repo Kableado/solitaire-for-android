@@ -3,3 +3,4 @@ bin
 gen/com/var/solitaire/BuildConfig.java
 gen/com/var/solitaire/Manifest.java
 gen/com/var/solitaire/R.java
+*.apk
