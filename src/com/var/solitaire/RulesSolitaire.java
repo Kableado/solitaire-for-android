@@ -32,12 +32,12 @@ class RulesSolitaire extends Rules {
 
     // Top anchors for placing cards
     for (int i = 2; i < 6; i++) {
-      mCardAnchor[i] = CardStack.CreateAnchor(CardStack.SEQ_SINK, i + 2, this);
+      mCardAnchor[i] = CardStack.CreateAnchor(CardStack.SEQ_SINK, i, this);
     }
 
     // Middle anchor stacks
     for (int i = 6; i < 13; i++) {
-      mCardAnchor[i] = CardStack.CreateAnchor(CardStack.GENERIC_ANCHOR, i + 6, this);
+      mCardAnchor[i] = CardStack.CreateAnchor(CardStack.GENERIC_ANCHOR, i, this);
       mCardAnchor[i].SetStartSeq(GenericAnchor.START_KING);
       mCardAnchor[i].SetBuildSeq(GenericAnchor.SEQ_DSC);
       mCardAnchor[i].SetMoveSeq(GenericAnchor.SEQ_ASC);
