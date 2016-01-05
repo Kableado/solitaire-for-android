@@ -24,11 +24,7 @@ class RulesSolitaire extends Rules {
     // Top dealt from anchors
     mCardAnchor[0] = CardStack.CreateAnchor(CardStack.DEAL_FROM, 0, this);
     mCardAnchor[1] = CardStack.CreateAnchor(CardStack.DEAL_TO, 1, this);
-    if (mDealThree) {
-      mCardAnchor[1].SetShowing(3);
-    } else {
-      mCardAnchor[1].SetShowing(1);
-    }
+    mCardAnchor[1].SetShowing(4);
 
     // Top anchors for placing cards
     for (int i = 2; i < 6; i++) {

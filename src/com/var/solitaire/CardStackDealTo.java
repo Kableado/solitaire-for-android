@@ -11,6 +11,24 @@ class CardStackDealTo extends CardStack{
     mShowing = 1;
   }
 
+  @Override protected
+  void SetCardPosition(int idx){
+    int idxShowing = (mCardCount - mShowing);
+    if(idx < idxShowing){
+      mCard[idx].SetPosition(mX, mY);
+      return;
+    }
+    int pos;
+    if(mCardCount < mShowing){
+      pos = idx;
+    }else{
+      pos = idx - idxShowing;
+    }
+    double x = mX + ((Card.WIDTH * 0.75) * (1 - Math.cos((pos / (double)(mShowing - 1)) * (Math.PI / 2))));
+    mCard[idx].SetPosition((int)x, mY);
+  }
+
+
   @Override
   public void SetShowing(int showing) { mShowing = showing; }
 
