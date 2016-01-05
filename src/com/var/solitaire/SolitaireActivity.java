@@ -16,22 +16,19 @@
   Modified by Curtis Gedak 2015
   Modified by Valeriano A.R 2016
 */
-package com.kmagic.solitaire;
+package com.var.solitaire;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Window;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.widget.TextView;
 
 // Base activity class.
-public class Solitaire extends Activity {
+public class SolitaireActivity extends Activity {
   private static final int MENU_NEW_GAME  = 1;
   private static final int MENU_RESTART   = 2;
   private static final int MENU_OPTIONS   = 3;
@@ -56,10 +53,10 @@ public class Solitaire extends Activity {
 
     // If the user has never accepted the EULA show it again.
     mSettings = getSharedPreferences("SolitairePreferences", 0);
-    setContentView(R.layout.main);
-    mMainView = findViewById(R.id.main_view);
-    mSolitaireView = (SolitaireView) findViewById(R.id.solitaire);
-    mSolitaireView.SetTextView((TextView) findViewById(R.id.text));
+    setContentView(com.var.solitaire.R.layout.main);
+    mMainView = findViewById(com.var.solitaire.R.id.main_view);
+    mSolitaireView = (SolitaireView) findViewById(com.var.solitaire.R.id.solitaire);
+    mSolitaireView.SetTextView((TextView) findViewById(com.var.solitaire.R.id.text));
 
     //StartSolitaire(savedInstanceState);
   }
@@ -97,12 +94,12 @@ public class Solitaire extends Activity {
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     super.onCreateOptionsMenu(menu);
-    menu.add(0, MENU_NEW_GAME, 0, R.string.menu_newgame);
-    menu.add(0, MENU_RESTART, 0, R.string.menu_restart);
-    menu.add(0, MENU_OPTIONS, 0, R.string.menu_options);
-    menu.add(0, MENU_STATS, 0, R.string.menu_stats);
-    menu.add(0, MENU_HELP, 0, R.string.menu_help);
-    menu.add(0, MENU_QUIT, 0, R.string.menu_quit);
+    menu.add(0, MENU_NEW_GAME, 0, com.var.solitaire.R.string.menu_newgame);
+    menu.add(0, MENU_RESTART, 0, com.var.solitaire.R.string.menu_restart);
+    menu.add(0, MENU_OPTIONS, 0, com.var.solitaire.R.string.menu_options);
+    menu.add(0, MENU_STATS, 0, com.var.solitaire.R.string.menu_stats);
+    menu.add(0, MENU_HELP, 0, com.var.solitaire.R.string.menu_help);
+    menu.add(0, MENU_QUIT, 0, com.var.solitaire.R.string.menu_quit);
     return true;
   }
 

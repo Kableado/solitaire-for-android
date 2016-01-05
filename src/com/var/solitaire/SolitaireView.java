@@ -16,7 +16,7 @@
   Modified by Curtis Gedak 2015
   Modified by Valeriano A.R. 2016
 */ 
-package com.kmagic.solitaire;
+package com.var.solitaire;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -130,8 +130,8 @@ public class SolitaireView extends View {
     mReplay = new Replay(this, mAnimateCard);
 
     Resources res = context.getResources();
-    mHelpText = context.getResources().getText(R.string.help_text);
-    mWinText = context.getResources().getText(R.string.win_text);
+    mHelpText = context.getResources().getText(com.var.solitaire.R.string.help_text);
+    mWinText = context.getResources().getText(com.var.solitaire.R.string.win_text);
     mContext = context;
     mTextViewDown = false;
     mRefreshThread.start();

@@ -13,13 +13,10 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */ 
-package com.kmagic.solitaire;
+package com.var.solitaire;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.graphics.Canvas;
-import java.lang.InterruptedException;
-import java.lang.Thread;
+
 import java.util.Stack;
 
 

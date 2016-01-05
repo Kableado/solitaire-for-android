@@ -13,34 +13,30 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */ 
-package com.kmagic.solitaire;
+package com.var.solitaire;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.view.WindowManager;
 
 
 public class Stats {
 
   public Stats(final Solitaire solitaire, final SolitaireView view) {
 
-    solitaire.setContentView(R.layout.stats);
-    View statsView = solitaire.findViewById(R.id.stats_view);
+    solitaire.setContentView(com.var.solitaire.R.layout.stats);
+    View statsView = solitaire.findViewById(com.var.solitaire.R.id.stats_view);
     statsView.setFocusable(true);
     statsView.setFocusableInTouchMode(true);
 
     Rules rules = view.GetRules();
     final SharedPreferences settings = solitaire.GetSettings();
-    final String gameAttemptString = rules.GetGameTypeString() + solitaire.getString(R.string.attempts);
-    final String gameWinString = rules.GetGameTypeString() + solitaire.getString(R.string.wins);
-    final String gameTimeString = rules.GetGameTypeString() + solitaire.getString(R.string.time);
-    final String gameScoreString = rules.GetGameTypeString() + solitaire.getString(R.string.score);
+    final String gameAttemptString = rules.GetGameTypeString() + solitaire.getString(com.var.solitaire.R.string.attempts);
+    final String gameWinString = rules.GetGameTypeString() + solitaire.getString(com.var.solitaire.R.string.wins);
+    final String gameTimeString = rules.GetGameTypeString() + solitaire.getString(com.var.solitaire.R.string.time);
+    final String gameScoreString = rules.GetGameTypeString() + solitaire.getString(com.var.solitaire.R.string.score);
     int attempts = settings.getInt(gameAttemptString, 0);
     int wins = settings.getInt(gameWinString, 0);
     int bestTime = settings.getInt(gameTimeString, -1);
@@ -50,31 +46,31 @@ public class Stats {
       ratio = (float)wins / (float)attempts * 100.0f;
     }
 
-    TextView tv = (TextView)solitaire.findViewById(R.id.text_title);
-    tv.setText(rules.GetPrettyGameTypeString() + " "+solitaire.getString(R.string.statistics)+"\n\n");
-    tv = (TextView)solitaire.findViewById(R.id.text_wins);
-    tv.setText(solitaire.getString(R.string.wins)+": " + wins + " "+solitaire.getString(R.string.attempts)+": " + attempts);
-    tv = (TextView)solitaire.findViewById(R.id.text_percentage);
-    tv.setText(solitaire.getString(R.string.winning_percentage)+": " + ratio);
+    TextView tv = (TextView)solitaire.findViewById(com.var.solitaire.R.id.text_title);
+    tv.setText(rules.GetPrettyGameTypeString() + " " + solitaire.getString(com.var.solitaire.R.string.statistics) + "\n\n");
+    tv = (TextView)solitaire.findViewById(com.var.solitaire.R.id.text_wins);
+    tv.setText(solitaire.getString(com.var.solitaire.R.string.wins) + ": " + wins + " " + solitaire.getString(com.var.solitaire.R.string.attempts) + ": " + attempts);
+    tv = (TextView)solitaire.findViewById(com.var.solitaire.R.id.text_percentage);
+    tv.setText(solitaire.getString(com.var.solitaire.R.string.winning_percentage) + ": " + ratio);
     if (bestTime != -1) {
       int seconds = (bestTime / 1000) % 60;
       int minutes = bestTime / 60000;
-      tv = (TextView)solitaire.findViewById(R.id.text_best_time);
-      tv.setText(solitaire.getString(R.string.fastest_time)+": " + String.format("%d:%02d", minutes, seconds));
+      tv = (TextView)solitaire.findViewById(com.var.solitaire.R.id.text_best_time);
+      tv.setText(solitaire.getString(com.var.solitaire.R.string.fastest_time) + ": " + String.format("%d:%02d", minutes, seconds));
     }
     if (rules.HasScore()) {
-      tv = (TextView)solitaire.findViewById(R.id.text_high_score);
-      tv.setText(solitaire.getString(R.string.high_score)+": " + highScore);
+      tv = (TextView)solitaire.findViewById(com.var.solitaire.R.id.text_high_score);
+      tv.setText(solitaire.getString(com.var.solitaire.R.string.high_score) + ": " + highScore);
     }
 
 
-    final Button accept = (Button) solitaire.findViewById(R.id.button_accept);
+    final Button accept = (Button) solitaire.findViewById(com.var.solitaire.R.id.button_accept);
     accept.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
         solitaire.CancelOptions();
       }
     });
-    final Button clear = (Button) solitaire.findViewById(R.id.button_clear);
+    final Button clear = (Button) solitaire.findViewById(com.var.solitaire.R.id.button_clear);
     clear.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
         SharedPreferences.Editor editor = settings.edit();

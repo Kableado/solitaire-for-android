@@ -15,7 +15,7 @@
 
   Modified by Curtis Gedak 2015
 */
-package com.kmagic.solitaire;
+package com.var.solitaire;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -187,7 +187,7 @@ public class DrawMaster {
     int w = 0;   // Width  of actual bitmap image
     int h = 0;   // Height of actual bitmap image
 
-    Drawable drawable = r.getDrawable(R.drawable.cardback);
+    Drawable drawable = r.getDrawable(com.var.solitaire.R.drawable.cardback);
 
     mCardHidden = Bitmap.createBitmap(Card.WIDTH, Card.HEIGHT,
                                       Bitmap.Config.ARGB_4444);
@@ -196,7 +196,7 @@ public class DrawMaster {
     drawable.draw(canvas);
 
     // Load suit bitmaps
-    drawable = r.getDrawable(R.drawable.suits);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.suits);
     w = drawable.getIntrinsicWidth();
     h = drawable.getIntrinsicHeight();
     int suitWidth = w/4;
@@ -208,7 +208,7 @@ public class DrawMaster {
     }
 
     // Load big suit bitmaps
-    drawable = r.getDrawable(R.drawable.bigsuits);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.bigsuits);
     w = drawable.getIntrinsicWidth();
     h = drawable.getIntrinsicHeight();
     int bigSuitWidth = w/4;
@@ -221,7 +221,7 @@ public class DrawMaster {
     }
 
     // Load big black font bitmaps
-    drawable = r.getDrawable(R.drawable.bigblackfont);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.bigblackfont);
     w = drawable.getIntrinsicWidth();
     h = drawable.getIntrinsicHeight();
     for (int i = 0; i < 13; i++) {
@@ -232,7 +232,7 @@ public class DrawMaster {
     }
 
     // Load big red font bitmaps
-    drawable = r.getDrawable(R.drawable.bigredfont);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.bigredfont);
     for (int i = 0; i < 13; i++) {
       redFont[i] = Bitmap.createBitmap(w/13, h, Bitmap.Config.ARGB_4444);
       canvas = new Canvas(redFont[i]);
@@ -306,7 +306,7 @@ public class DrawMaster {
     int w = 0;   // Width  of actual bitmap image
     int h = 0;   // Height of actual bitmap image
 
-    Drawable drawable = r.getDrawable(R.drawable.cardback);
+    Drawable drawable = r.getDrawable(com.var.solitaire.R.drawable.cardback);
 
     mCardHidden = Bitmap.createBitmap(Card.WIDTH, Card.HEIGHT,
                                       Bitmap.Config.ARGB_4444);
@@ -315,7 +315,7 @@ public class DrawMaster {
     drawable.draw(canvas);
 
     // Load suit bitmaps
-    drawable = r.getDrawable(R.drawable.suits);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.suits);
     w = drawable.getIntrinsicWidth();
     h = drawable.getIntrinsicHeight();
     for (int i = 0; i < 4; i++) {
@@ -351,7 +351,7 @@ public class DrawMaster {
     };
 
     // Load small suit bitmaps
-    drawable = r.getDrawable(R.drawable.smallsuits);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.smallsuits);
     w = drawable.getIntrinsicWidth();
     h = drawable.getIntrinsicHeight();
     int smallSuitWidth = w/4;
@@ -369,7 +369,7 @@ public class DrawMaster {
     }
 
     // Load medium black font bitmaps
-    drawable = r.getDrawable(R.drawable.medblackfont);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.medblackfont);
     w = drawable.getIntrinsicWidth();
     h = drawable.getIntrinsicHeight();
     int fontWidth = w/13;   // Same as for red below
@@ -387,7 +387,7 @@ public class DrawMaster {
     }
 
     // Load medium red font bitmaps
-    drawable = r.getDrawable(R.drawable.medredfont);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.medredfont);
     for (int i = 0; i < 13; i++) {
       redFont[i] = Bitmap.createBitmap(fontWidth, fontHeight, Bitmap.Config.ARGB_4444);
       revRedFont[i] = Bitmap.createBitmap(fontWidth, fontHeight, Bitmap.Config.ARGB_4444);
@@ -406,7 +406,7 @@ public class DrawMaster {
     if(faceHeight<1){faceHeight=1;}
 
     // Load red jack bitmap
-    drawable = r.getDrawable(R.drawable.redjack);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.redjack);
     redJack = Bitmap.createBitmap(faceWidth, faceHeight, Bitmap.Config.ARGB_4444);
     redRevJack = Bitmap.createBitmap(faceWidth, faceHeight, Bitmap.Config.ARGB_4444);
     canvas = new Canvas(redJack);
@@ -418,7 +418,7 @@ public class DrawMaster {
     drawable.draw(canvas);
 
     // Load red queen bitmap
-    drawable = r.getDrawable(R.drawable.redqueen);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.redqueen);
     redQueen = Bitmap.createBitmap(faceWidth, faceHeight, Bitmap.Config.ARGB_4444);
     redRevQueen = Bitmap.createBitmap(faceWidth, faceHeight, Bitmap.Config.ARGB_4444);
     canvas = new Canvas(redQueen);
@@ -430,7 +430,7 @@ public class DrawMaster {
     drawable.draw(canvas);
 
     // Load red king bitmap
-    drawable = r.getDrawable(R.drawable.redking);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.redking);
     redKing = Bitmap.createBitmap(faceWidth, faceHeight, Bitmap.Config.ARGB_4444);
     redRevKing = Bitmap.createBitmap(faceWidth, faceHeight, Bitmap.Config.ARGB_4444);
     canvas = new Canvas(redKing);
@@ -442,7 +442,7 @@ public class DrawMaster {
     drawable.draw(canvas);
 
     // Load black jack bitmap
-    drawable = r.getDrawable(R.drawable.blackjack);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.blackjack);
     blackJack = Bitmap.createBitmap(faceWidth, faceHeight, Bitmap.Config.ARGB_4444);
     blackRevJack = Bitmap.createBitmap(faceWidth, faceHeight, Bitmap.Config.ARGB_4444);
     canvas = new Canvas(blackJack);
@@ -454,7 +454,7 @@ public class DrawMaster {
     drawable.draw(canvas);
 
     // Load black queen bitmap
-    drawable = r.getDrawable(R.drawable.blackqueen);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.blackqueen);
     blackQueen = Bitmap.createBitmap(faceWidth, faceHeight, Bitmap.Config.ARGB_4444);
     blackRevQueen = Bitmap.createBitmap(faceWidth, faceHeight, Bitmap.Config.ARGB_4444);
     canvas = new Canvas(blackQueen);
@@ -466,7 +466,7 @@ public class DrawMaster {
     drawable.draw(canvas);
 
     // Load black king bitmap
-    drawable = r.getDrawable(R.drawable.blackking);
+    drawable = r.getDrawable(com.var.solitaire.R.drawable.blackking);
     blackKing = Bitmap.createBitmap(faceWidth, faceHeight, Bitmap.Config.ARGB_4444);
     blackRevKing = Bitmap.createBitmap(faceWidth, faceHeight, Bitmap.Config.ARGB_4444);
     canvas = new Canvas(blackKing);

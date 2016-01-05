@@ -15,7 +15,7 @@
 
   Modified by Curtis Gedak 2015
 */
-package com.kmagic.solitaire;
+package com.var.solitaire;
 
 import android.graphics.Canvas;
 

@@ -13,13 +13,12 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */ 
-package com.kmagic.solitaire;
+package com.var.solitaire;
 
 import android.graphics.Canvas;
-import android.util.Log;
 
 
-class CardAnchor {
+class CardStack{
 
   public static final int MAX_CARDS = 104;
   public static final int SEQ_SINK = 1;
@@ -55,8 +54,9 @@ class CardAnchor {
   // ==========================================================================
   // Create a CardAnchor
   // -------------------
-  public static CardAnchor CreateAnchor(int type, int number, Rules rules) {
-    CardAnchor ret = null;
+  public static
+  CardStack CreateAnchor(int type, int number, Rules rules) {
+    CardStack ret = null;
     switch (type) {
       case SEQ_SINK:
         ret = new SeqSink();
@@ -76,7 +76,8 @@ class CardAnchor {
     return ret;
   }
 
-  public CardAnchor() {
+  public
+  CardStack() {
     mX = 1;
     mY = 1;
     mCard = new Card[MAX_CARDS];
@@ -245,7 +246,7 @@ class CardAnchor {
 }
 
 // Straight up default
-class DealTo extends CardAnchor {
+class DealTo extends CardStack{
   private int mShowing;
   public DealTo() {
     super();
@@ -289,7 +290,7 @@ class DealTo extends CardAnchor {
 }
 
 // Anchor where cards to deal come from
-class DealFrom extends CardAnchor {
+class DealFrom extends CardStack{
 
   @Override
   public Card GrabCard(float x, float y) { return null; }
@@ -314,7 +315,7 @@ class DealFrom extends CardAnchor {
 }
 
 // Anchor that holds increasing same suited cards
-class SeqSink extends CardAnchor {
+class SeqSink extends CardStack{
 
   @Override
   public void AddCard(Card card) {
@@ -357,7 +358,7 @@ class SeqSink extends CardAnchor {
 }
 
 // New Abstract
-class GenericAnchor extends CardAnchor{
+class GenericAnchor extends CardStack{
 
   //Sequence start values
   public static final int START_ANY  = 1; // An empty stack can take any card.
